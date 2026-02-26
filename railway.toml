@@ -1,0 +1,86 @@
+# 🚀 Deploy no Railway — Guia Completo
+
+## Pré-requisitos
+- Conta gratuita no GitHub: https://github.com
+- Conta gratuita no Railway: https://railway.app
+
+---
+
+## Passo 1 — Criar repositório no GitHub
+
+1. Vai a https://github.com/new
+2. Nome: `leadscraper`
+3. Privado ou público — à tua escolha
+4. Clica **Create repository**
+
+---
+
+## Passo 2 — Fazer upload dos ficheiros
+
+Na página do repositório recém-criado:
+
+1. Clica **"uploading an existing file"**
+2. Arrasta TODA a pasta `leadscraper` para o browser
+3. Clica **Commit changes**
+
+---
+
+## Passo 3 — Deploy no Railway
+
+1. Vai a https://railway.app
+2. Clica **"Start a New Project"**
+3. Escolhe **"Deploy from GitHub repo"**
+4. Autoriza o GitHub e selecciona o repositório `leadscraper`
+5. Railway detecta automaticamente o `nixpacks.toml` e faz o build
+
+---
+
+## Passo 4 — Aguardar o build (~3-5 minutos)
+
+O Railway vai:
+- Instalar Python 3.11
+- Instalar as dependências (`pip install -r requirements.txt`)
+- Instalar o Chromium (`playwright install chromium`)
+- Iniciar o servidor
+
+Podes ver o progresso em **Deployments → View Logs**
+
+---
+
+## Passo 5 — Obter o URL público
+
+1. No dashboard do Railway, clica no teu projecto
+2. Vai a **Settings → Networking → Generate Domain**
+3. O Railway dá-te um URL tipo: `leadscraper-production.up.railway.app`
+4. Abre esse URL no browser — o LeadScraper está online! 🎉
+
+---
+
+## ⚠️ Notas Importantes
+
+**Tier gratuito do Railway:**
+- 500 horas/mês de execução
+- 1 GB de RAM
+- Suficiente para uso pessoal e testes
+
+**O browser abre em modo invisível no servidor** (headless) —
+não vês a janela do Chrome, mas o scraping funciona na mesma.
+
+**Base de dados:** O SQLite guarda os dados no servidor do Railway.
+Se o servidor reiniciar, os dados podem ser perdidos.
+Para produção a sério, considera migrar para PostgreSQL
+(o Railway oferece PostgreSQL gratuito).
+
+---
+
+## Problemas comuns
+
+**Build falha com erro do Chromium:**
+→ Verifica se o `nixpacks.toml` está na raiz do projecto
+
+**"Application failed to respond":**
+→ Vai a Deployments → Logs e procura o erro específico
+
+**Sem leads encontrados:**
+→ Normal nas primeiras execuções — o Google pode rate-limit.
+   Tenta com menos zonas e aguarda 1-2 minutos entre pesquisas.
