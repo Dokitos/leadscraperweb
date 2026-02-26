@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+websockets
+aiofiles
+playwright
+pandas
+openpyxl
+gspread
+google-auth
+pydantic
+python-multipart
+gunicorn
